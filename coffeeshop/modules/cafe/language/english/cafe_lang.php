@@ -1,0 +1,30 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+$lang['cafe_manage']			= 'Manage Cafe';
+$lang['cafe_edit']				= 'Edit';
+$lang['cafe_true']				= 'True';
+$lang['cafe_false']				= 'False';
+$lang['cafe_create']			= 'Create';
+$lang['cafe_list']				= 'List';
+$lang['cafe_new']				= 'New';
+$lang['cafe_edit_text']			= 'Edit this to suit your needs';
+$lang['cafe_no_records']			= 'There aren\'t any cafe in the system.';
+$lang['cafe_create_new']			= 'Create a new Cafe.';
+$lang['cafe_create_success']			= 'Cafe successfully created.';
+$lang['cafe_create_failure']			= 'There was a problem creating the cafe: ';
+$lang['cafe_create_new_button']			= 'Create New Cafe';
+$lang['cafe_invalid_id']			= 'Invalid Cafe ID.';
+$lang['cafe_edit_success']			= 'Cafe successfully saved.';
+$lang['cafe_edit_failure']			= 'There was a problem saving the cafe: ';
+$lang['cafe_delete_success']			= 'record(s) successfully deleted.';
+$lang['cafe_delete_failure']			= 'We could not delete the record: ';
+$lang['cafe_delete_error']			= 'You have not selected any records to delete.';
+$lang['cafe_actions']			= 'Actions';
+$lang['cafe_cancel']			= 'Cancel';
+$lang['cafe_delete_record']			= 'Delete this Cafe';
+$lang['cafe_delete_confirm']			= 'Are you sure you want to delete this cafe?';
+$lang['cafe_edit_heading']			= 'Edit Cafe';
+
+// Activities
+$lang['cafe_act_create_record']			= 'Created record with ID';
+$lang['cafe_act_edit_record']			= 'Updated record with ID';
+$lang['cafe_act_delete_record']			= 'Deleted record with ID';

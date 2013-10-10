@@ -1,0 +1,16 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2013-08-29 16:45:17 --> Could not find the language line "bf_context_test"
+ERROR - 2013-08-29 16:45:27 --> Could not find the language line "bf_context_test"
+ERROR - 2013-08-29 16:46:54 --> Could not find the language line "bf_context_test"
+ERROR - 2013-08-29 16:47:32 --> Could not find the language line "bf_context_test"
+ERROR - 2013-08-29 16:47:45 --> Could not find the language line "bf_context_test"
+ERROR - 2013-08-29 16:47:58 --> Could not find the language line "bf_context_test"
+ERROR - 2013-08-29 16:48:33 --> Could not find the language line "bf_context_test"
+ERROR - 2013-08-29 16:48:39 --> Could not find the language line "bf_context_test"
+ERROR - 2013-08-29 16:48:52 --> Could not find the language line "bf_context_test"
+ERROR - 2013-08-29 16:48:56 --> Could not find the language line "bf_context_test"
+ERROR - 2013-08-29 16:49:01 --> Could not find the language line "bf_context_test"
+ERROR - 2013-08-29 16:49:08 --> Could not find the language line "bf_context_test"
+ERROR - 2013-08-29 16:49:10 --> Could not find the language line "bf_context_test"
+ERROR - 2013-08-29 16:50:39 --> Could not find the language line "bf_context_test"
