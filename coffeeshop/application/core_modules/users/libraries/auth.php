@@ -168,7 +168,7 @@ class Auth
 			}
 
 			// Try password
-			if (do_hash($user->salt . $password) == $user->password_hash)
+			if (do_hash($password) == $user->password_hash)
 			{
 				// Do they even have permission to log in?
 				if (!$this->has_permission('Site.Signin.Allow', $user->role_id))

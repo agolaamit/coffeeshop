@@ -240,7 +240,7 @@ class Users extends Front_Controller
                 // Log the Activity
 
                 $user = $this->user_model->find($user_id);
-                $log_name = (isset($user->display_name) && !empty($user->display_name)) ? $user->display_name : ($this->settings_lib->item('auth.use_usernames') ? $user->username : $user->email);
+                $log_name = (isset($user->nickname) && !empty($user->nickname)) ? $user->nickname : ($this->settings_lib->item('auth.use_usernames') ? $user->username : $user->email);
                 $this->activity_model->log_activity($this->current_user->id, lang('us_log_edit_profile') . ': ' . $log_name, 'users');
 
                 Template::set_message(lang('us_profile_updated_success'), 'success');
@@ -405,7 +405,7 @@ class Users extends Front_Controller
 
             $this->form_validation->set_rules('language', 'lang:bf_language', 'required|trim|strip_tags|xss_clean');
             $this->form_validation->set_rules('timezones', 'lang:bf_timezone', 'required|trim|strip_tags|max_length[4]|xss_clean');
-            $this->form_validation->set_rules('display_name', 'lang:bf_display_name', 'trim|strip_tags|max_length[255]|xss_clean');
+            $this->form_validation->set_rules('nickname', 'lang:bf_nickname', 'trim|strip_tags|max_length[255]|xss_clean');
 
 
             $meta_data = array();
@@ -614,7 +614,7 @@ class Users extends Front_Controller
 
         $this->form_validation->set_rules('language', 'lang:bf_language', 'required|trim|strip_tags|xss_clean');
         $this->form_validation->set_rules('timezones', 'lang:bf_timezone', 'required|trim|strip_tags|max_length[4]|xss_clean');
-        $this->form_validation->set_rules('display_name', 'lang:bf_display_name', 'trim|strip_tags|max_length[255]|xss_clean');
+        $this->form_validation->set_rules('nickname', 'lang:bf_nickname', 'trim|strip_tags|max_length[255]|xss_clean');
 
         // Added Event "before_user_validation" to run before the form validation
         Events::trigger('before_user_validation', $payload);
@@ -651,9 +651,9 @@ class Users extends Front_Controller
             $data['pass_confirm'] = $this->input->post('pass_confirm');
         }
 
-        if ($this->input->post('display_name'))
+        if ($this->input->post('nickname'))
         {
-            $data['display_name'] = $this->input->post('display_name');
+            $data['nickname'] = $this->input->post('nickname');
         }
 
         if ($this->settings_lib->item('auth.use_usernames'))

@@ -37,10 +37,10 @@
 		</div>
 	</div>
 
-	<div class="control-group <?php echo iif( form_error('display_name') , 'error') ;?>">
-		<label class="control-label" for="display_name"><?php echo lang('bf_display_name'); ?></label>
+	<div class="control-group <?php echo iif( form_error('nickname') , 'error') ;?>">
+		<label class="control-label" for="nickname"><?php echo lang('bf_nickname'); ?></label>
 		<div class="controls">
-			<input class="span6" type="text" name="display_name" id="display_name" value="<?php echo set_value('display_name'); ?>" />
+			<input class="span6" type="text" name="nickname" id="nickname" value="<?php echo set_value('nickname'); ?>" />
 		</div>
 	</div>
 

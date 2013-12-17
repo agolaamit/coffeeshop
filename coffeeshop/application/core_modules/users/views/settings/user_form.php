@@ -39,11 +39,11 @@
             </div>
         </div>
 
-        <div class="control-group <?php echo form_error('display_name') ? 'error' : '' ?>">
-            <label for="display_name" class="control-label"><?php echo lang('bf_display_name') ?></label>
+        <div class="control-group <?php echo form_error('nickname') ? 'error' : '' ?>">
+            <label for="nickname" class="control-label"><?php echo lang('bf_nickname') ?></label>
             <div class="controls">
-                <input type="text" name="display_name" id="display_name" value="<?php echo set_value('display_name', isset($user) ? $user->display_name : '') ?>">
-                <?php if (form_error('display_name')) echo '<span class="help-inline">' . form_error('display_name') . '</span>'; ?>
+                <input type="text" name="nickname" id="nickname" value="<?php echo set_value('nickname', isset($user) ? $user->nickname : '') ?>">
+                <?php if (form_error('nickname')) echo '<span class="help-inline">' . form_error('nickname') . '</span>'; ?>
             </div>
         </div>
 

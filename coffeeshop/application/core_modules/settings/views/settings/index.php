@@ -138,7 +138,7 @@
 			</div>
 
 			<div class="control-group">
-				<label class="control-label"><?php echo lang('bf_display_name'); ?></label>
+				<label class="control-label"><?php echo lang('bf_nickname'); ?></label>
 				<div class="controls">
 					<label class="checkbox" for="allow_name_change">
 						<input type="checkbox" name="allow_name_change" id="allow_name_change" <?php echo isset($settings['auth.allow_name_change']) && $settings['auth.allow_name_change'] == 1 ? 'checked="checked"' : set_checkbox('auth.allow_remember', 1); ?> >

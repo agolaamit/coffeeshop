@@ -134,7 +134,7 @@ class Settings extends Admin_Controller
         $this->load->helper('ui/ui');
 
         $this->user_model->limit($this->limit, $offset)->where($where);
-        $this->user_model->select('users.id, users.role_id, username, display_name, email, last_login, banned, active, users.deleted, role_name');
+        $this->user_model->select('users.id, users.role_id, username, nickname, email, last_login, banned, active, users.deleted, role_name');
 
         Template::set('users', $this->user_model->find_all($show_deleted));
 
@@ -200,7 +200,7 @@ class Settings extends Admin_Controller
                 $this->user_model->save_meta_for($id, $meta_data);
 
                 $user = $this->user_model->find($id);
-                $log_name = (isset($user->display_name) && !empty($user->display_name)) ? $user->display_name : ($this->settings_lib->item('auth.use_usernames') ? $user->username : $user->email);
+                $log_name = (isset($user->nickname) && !empty($user->nickname)) ? $user->nickname : ($this->settings_lib->item('auth.use_usernames') ? $user->username : $user->email);
                 $this->activity_model->log_activity($this->current_user->id, lang('us_log_create') . ' ' . $user->role_name . ': ' . $log_name, 'users');
 
                 Template::set_message(lang('us_user_created_success'), 'success');
@@ -284,7 +284,7 @@ class Settings extends Admin_Controller
 
 
                 $user = $this->user_model->find_user_and_meta($user_id);
-                $log_name = (isset($user->display_name) && !empty($user->display_name)) ? $user->display_name : ($this->settings_lib->item('auth.use_usernames') ? $user->username : $user->email);
+                $log_name = (isset($user->nickname) && !empty($user->nickname)) ? $user->nickname : ($this->settings_lib->item('auth.use_usernames') ? $user->username : $user->email);
                 $this->activity_model->log_activity($this->current_user->id, lang('us_log_edit') . ': ' . $log_name, 'users');
 
                 Template::set_message(lang('us_user_update_success'), 'success');
@@ -368,7 +368,7 @@ class Settings extends Admin_Controller
             {
 
                 $user = $this->user_model->find($id);
-                $log_name = (isset($user->display_name) && !empty($user->display_name)) ? $user->display_name : ($this->settings_lib->item('auth.use_usernames') ? $user->username : $user->email);
+                $log_name = (isset($user->nickname) && !empty($user->nickname)) ? $user->nickname : ($this->settings_lib->item('auth.use_usernames') ? $user->username : $user->email);
                 $this->activity_model->log_activity($this->current_user->id, lang('us_log_delete') . ': ' . $log_name, 'users');
                 Template::set_message(lang('us_action_deleted'), 'success');
             }
@@ -496,7 +496,7 @@ class Settings extends Admin_Controller
             $this->form_validation->set_rules('username', lang('bf_username'), 'required|trim|strip_tags|max_length[30]|unique[users.username' . $extra_unique_rule . ']|xss_clean');
         }
 
-        $this->form_validation->set_rules('display_name', lang('bf_display_name'), 'trim|strip_tags|max_length[255]|xss_clean');
+        $this->form_validation->set_rules('nickname', lang('bf_nickname'), 'trim|strip_tags|max_length[255]|xss_clean');
 
         //$this->form_validation->set_rules('language', lang('bf_language'), 'required|trim|strip_tags|xss_clean');
         //$this->form_validation->set_rules('timezones', lang('bf_timezone'), 'required|trim|strip_tags|max_length[4]|xss_clean');
@@ -577,9 +577,9 @@ class Settings extends Admin_Controller
             $data['banned'] = 0;
         }
 
-        if ($this->input->post('display_name'))
+        if ($this->input->post('nickname'))
         {
-            $data['display_name'] = $this->input->post('display_name');
+            $data['nickname'] = $this->input->post('nickname');
         }
 
         // Activation

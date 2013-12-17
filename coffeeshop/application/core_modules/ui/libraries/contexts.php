@@ -375,12 +375,12 @@ class Contexts
 
 				self::$actions[$module] = array(
 					'weight'		=> isset($mod_config['weights'][$context]) ? $mod_config['weights'][$context] : 0,
-					'display_name'	=> isset($mod_config['name']) ? $mod_config['name'] : $module,
+					'nickname'	=> isset($mod_config['name']) ? $mod_config['name'] : $module,
 					'title' 		=> isset($mod_config['description']) ? $mod_config['description'] : $module,
 					'menus'			=> isset($mod_config['menus']) ? $mod_config['menus'] : FALSE,
 				);
 
-				self::$actions[$module]['menu_topic'] = isset($mod_config['menu_topic']) ? $mod_config['menu_topic'] : self::$actions[$module]['display_name'];
+				self::$actions[$module]['menu_topic'] = isset($mod_config['menu_topic']) ? $mod_config['menu_topic'] : self::$actions[$module]['nickname'];
 			}
 		}
 
@@ -415,10 +415,10 @@ class Contexts
 					$menu_view = '';
 				}
 
-				$menu_topic = is_array($config['menu_topic']) && isset($config['menu_topic'][$context]) ? $config['menu_topic'][$context] : $config['display_name'];
+				$menu_topic = is_array($config['menu_topic']) && isset($config['menu_topic'][$context]) ? $config['menu_topic'][$context] : $config['nickname'];
 				self::$menu[$menu_topic][$module] = array(
 						'title'			=> $config['title'],
-						'display_name'	=> $config['display_name'],
+						'nickname'	=> $config['nickname'],
 						'menu_view'		=> $menu_view,
 						'menu_topic'	=> $menu_topic
 				);
@@ -618,7 +618,7 @@ class Contexts
 					// Otherwise, it's a single item, so add it like normal
 					else
 					{
-						$list .= self::build_item($module, $vals['title'], $vals['display_name'], $context, $vals['menu_view']);
+						$list .= self::build_item($module, $vals['title'], $vals['nickname'], $context, $vals['menu_view']);
 					}
 				}
 
@@ -628,7 +628,7 @@ class Contexts
 			{
 				foreach ($topic as $module => $vals)
 				{
-					$list .= self::build_item($module, $vals['title'], $vals['display_name'], $context, $vals['menu_view']);
+					$list .= self::build_item($module, $vals['title'], $vals['nickname'], $context, $vals['menu_view']);
 				}
 			}//end if
 		}//end foreach
@@ -655,16 +655,16 @@ class Contexts
 	 *
 	 * @param string $module       The name of the module this link belongs to
 	 * @param string $title        The title used on the link
-	 * @param string $display_name The name to display in the menu
+	 * @param string $nickname The name to display in the menu
 	 * @param string $context      The name of the context
 	 * @param string $menu_view    The name of the view file that contains the sub-menu
 	 *
 	 * @return string The HTML necessary for a single item and it's sub-menus.
 	 */
-	private static function build_item($module, $title, $display_name, $context, $menu_view='')
+	private static function build_item($module, $title, $nickname, $context, $menu_view='')
 	{
 		$item  = '<li {listclass}><a href="'. site_url(self::$site_area .'/'. $context .'/'. $module) .'" class="{class}"';
-		$item .= ' title="'. $title .'">'. ucwords(str_replace('_', '', $display_name)) ."</a>\n";
+		$item .= ' title="'. $title .'">'. ucwords(str_replace('_', '', $nickname)) ."</a>\n";
 
 		// Sub Menus?
 		if (!empty($menu_view))
@@ -706,15 +706,15 @@ class Contexts
 	private function sort_actions()
 	{
 		$weights 		= array();
-		$display_names	= array();
+		$nicknames	= array();
 
 		foreach (self::$actions as $key => $action)
 		{
 			$weights[$key] 			= $action['weight'];
-			$display_names[$key]	= $action['display_name'];
+			$nicknames[$key]	= $action['nickname'];
 		}
 
-		array_multisort($weights, SORT_DESC, $display_names, SORT_ASC, self::$actions);
+		array_multisort($weights, SORT_DESC, $nicknames, SORT_ASC, self::$actions);
 		//echo '<pre>'. print_r(self::$actions, true) .'</pre>';
 
 	}//end sort_actions()

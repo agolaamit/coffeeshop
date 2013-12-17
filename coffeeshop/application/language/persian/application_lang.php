@@ -61,7 +61,7 @@ $lang['bf_days']				= 'روز';
 $lang['bf_username']			= 'نام کاربری';
 $lang['bf_password']			= 'کلمه عبور';
 $lang['bf_password_confirm']	= 'کلمه عبور (تکرار)';
-$lang['bf_display_name']		= 'نام نمایشی';
+$lang['bf_nickname']		= 'نام نمایشی';
 
 //--------------------------------------------------------------------
 // ! CRUD SETTINGS

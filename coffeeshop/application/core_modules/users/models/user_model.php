@@ -143,23 +143,48 @@ class User_model extends BF_Model
         }
 
         // Display Name
-        if (!isset($data['display_name']) || (isset($data['display_name']) && empty($data['display_name'])))
+        if (!isset($data['nickname']) || (isset($data['nickname']) && empty($data['nickname'])))
         {
             if ($this->settings_lib->item('auth.use_usernames') == 1 && !empty($data['username']))
             {
-                $data['display_name'] = $data['username'];
+                $data['nickname'] = $data['username'];
             } else
             {
-                $data['display_name'] = $data['email'];
+                $data['nickname'] = $data['email'];
             }
         }
 
-        list($password, $salt) = $this->hash_password($data['password']);
+        $password = ($data['password']);
 
         unset($data['password'], $data['pass_confirm'], $data['submit']);
 
         $data['password_hash'] = $password;
-        $data['salt'] = $salt;
+        
+        // What's the default role?
+        if (!isset($data['role_id']))
+        {
+            // We better have a guardian here
+            if (!class_exists('Role_model'))
+            {
+                $this->load->model('roles/Role_model', 'role_model');
+            }
+
+            $data['role_id'] = $this->role_model->default_role_id();
+        }
+        
+        $id = parent::insert($data);
+
+        Events::trigger('after_create_user', $id);
+
+        return $id;
+    }
+
+    public function insert_fb($data = array())
+    {
+        if (!$this->_function_check(FALSE, $data))
+        {
+            return FALSE;
+        }
 
         // What's the default role?
         if (!isset($data['role_id']))
@@ -172,14 +197,14 @@ class User_model extends BF_Model
 
             $data['role_id'] = $this->role_model->default_role_id();
         }
-
+        
         $id = parent::insert($data);
 
         Events::trigger('after_create_user', $id);
 
         return $id;
     }
-
+    
 //end insert()
     //--------------------------------------------------------------------
 
@@ -203,17 +228,14 @@ class User_model extends BF_Model
             Events::trigger('before_user_update', $trigger_data);
         }
 
-        if (empty($data['pass_confirm']) && isset($data['password']))
+        if (!empty($data['password']) && $data['password'] != "")
         {
-            unset($data['pass_confirm'], $data['password']);
-        } else if (!empty($data['password']) && !empty($data['pass_confirm']) && $data['password'] == $data['pass_confirm'])
-        {
-            list($password, $salt) = $this->hash_password($data['password']);
+            $password = ($data['password']);
 
             unset($data['password'], $data['pass_confirm']);
 
             $data['password_hash'] = $password;
-            $data['salt'] = $salt;
+            
         }
 
         // Handle the country

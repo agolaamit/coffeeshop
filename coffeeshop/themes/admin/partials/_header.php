@@ -75,7 +75,7 @@ if (isset($shortcut_data) && is_array($shortcut_data['shortcut_keys']))
                     <div class="nav pull-right" id="user-menu">
                         <div class="btn-group">
                             <a href="<?php echo site_url(SITE_AREA . '/settings/users/edit') ?>" id="tb_email" class="btn dark" title="<?php echo lang('bf_user_settings') ?>">
-                                <?php echo (isset($current_user->display_name) && !empty($current_user->display_name)) ? $current_user->display_name : ($this->settings_lib->item('auth.use_usernames') ? $current_user->username : $current_user->email); ?>
+                                <?php echo (isset($current_user->nickname) && !empty($current_user->nickname)) ? $current_user->nickname : ($this->settings_lib->item('auth.use_usernames') ? $current_user->username : $current_user->email); ?>
                             </a>
                             <!-- Change **light** to **dark** to match colors -->
                             <a class="btn dropdown-toggle light" data-toggle="dropdown" href="#"><span class="caret"></span></a>
@@ -83,11 +83,11 @@ if (isset($shortcut_data) && is_array($shortcut_data['shortcut_keys']))
                                 <li>
                                     <div class="inner">
                                         <div class="toolbar-profile-img">
-                                            <?php echo gravatar_link($current_user->email, 96, null, $current_user->display_name) ?>
+                                            <?php echo gravatar_link($current_user->email, 96, null, $current_user->nickname) ?>
                                         </div>
 
                                         <div class="toolbar-profile-info">
-                                            <p><b><?php echo $current_user->display_name ?></b><br/>
+                                            <p><b><?php echo $current_user->nickname ?></b><br/>
                                                 <?php e($current_user->email) ?>
                                                 <br/>
                                             </p>

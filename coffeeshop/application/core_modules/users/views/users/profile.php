@@ -43,10 +43,10 @@
 
 <?php echo form_open($this->uri->uri_string(), array('class' => "form-horizontal", 'autocomplete' => 'off')); ?>
 
-	<div class="control-group <?php echo iif( form_error('display_name') , 'error') ;?>">
-		<label class="control-label" for="display_name"><?php echo lang('bf_display_name'); ?></label>
+	<div class="control-group <?php echo iif( form_error('nickname') , 'error') ;?>">
+		<label class="control-label" for="nickname"><?php echo lang('bf_nickname'); ?></label>
 		<div class="controls">
-			<input class="span6" type="text" id="display_name" name="display_name" value="<?php echo set_value('display_name', isset($user) ? $user->display_name : '') ?>" />
+			<input class="span6" type="text" id="nickname" name="nickname" value="<?php echo set_value('nickname', isset($user) ? $user->nickname : '') ?>" />
 		</div>
 	</div>
 

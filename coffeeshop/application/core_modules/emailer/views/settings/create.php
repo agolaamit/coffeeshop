@@ -34,7 +34,7 @@
 				<th class="column-check"><input class="check-all" type="checkbox" /></th>
 				<th style="width: 3em"><?php echo lang('bf_id'); ?></th>
 				<th><?php echo lang('bf_username'); ?></th>
-				<th><?php echo lang('bf_display_name'); ?></th>
+				<th><?php echo lang('bf_nickname'); ?></th>
 				<th><?php echo lang('bf_email'); ?></th>
 				<th style="width: 11em"><?php echo lang('us_last_login'); ?></th>
 				<th style="width: 10em"><?php echo lang('us_status'); ?></th>
